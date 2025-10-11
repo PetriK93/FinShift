@@ -8,7 +8,11 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <ThemeProvider>
         <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
-          <Stack />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          />
         </SafeAreaView>
       </ThemeProvider>
     </SafeAreaProvider>

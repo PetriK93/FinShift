@@ -17,7 +17,7 @@ const ThemedButton = ({ title, onPress, style }) => {
         style={[
           styles.button,
           {
-            backgroundColor: theme.colors.primary, // normal color
+            backgroundColor: theme.colors.primary,
           },
         ]}
       >
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 10,
     paddingVertical: 12,
-    marginVertical: 8,
+    marginTop: 8,
     paddingHorizontal: 24,
     justifyContent: "center",
     alignItems: "center",

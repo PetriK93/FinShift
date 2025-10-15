@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { View, StyleSheet, Image, Platform, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Platform,
+  Text,
+  Alert,
+  Switch,
+} from "react-native";
 import { Asset } from "expo-asset";
 import { useTheme } from "../context/ThemeContext";
 import UserInput from "../components/inputs/UserInput";
@@ -13,10 +21,18 @@ const logoAsset = Asset.fromModule(
 function Index() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const theme = useTheme();
 
-  const handleSubmit = () => {
-    console.log(`Username is: ${username}, the password is: ${password}`);
+  const handleSubmit = async () => {
+    if (!username || !password) {
+      if (Platform.OS === "web") {
+        window.alert("Please fill in both fields.");
+      } else {
+        Alert.alert("Error", "Please fill in both fields.", [{ text: "OK" }]);
+      }
+      return;
+    }
   };
 
   return (
@@ -25,7 +41,7 @@ function Index() {
     >
       {Platform.OS === "web" ? (
         <img
-          src={logoAsset} // ✅ this is now a real URL string
+          src={logoAsset}
           alt="App Logo"
           style={{
             width: 250,
@@ -41,19 +57,43 @@ function Index() {
           style={styles.logo}
         />
       )}
-
-      <UserInput value={username} onChangeText={setUsername} style={theme} />
-      <PasswordInput
-        value={password}
-        onChangeText={setPassword}
-        theme={theme}
-      />
+      <View>
+        <UserInput
+          value={username}
+          onChangeText={setUsername}
+          style={theme}
+          accessibilityLabel="Username input"
+          selectable={true}
+        />
+        <PasswordInput
+          value={password}
+          onChangeText={setPassword}
+          theme={theme}
+          accessibilityLabel="Password input"
+        />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: "4px",
+          }}
+        >
+          <Switch
+            value={rememberMe}
+            onValueChange={setRememberMe}
+            trackColor={{ false: "#767577", true: "#81b0ff" }}
+            thumbColor={rememberMe ? "#f5dd4b" : "#f4f3f4"}
+          />
+          <Text style={{ color: theme.colors.text }}>Remember Me</Text>
+        </View>
+      </View>
       <ThemedButton title="Log-In" onPress={handleSubmit} style={theme} />
       <Text style={[styles.forgotPassword, { color: theme.colors.primary }]}>
         Forgot your password?
       </Text>
       <Text style={[styles.signUpText, { color: theme.colors.primary }]}>
-        Don’t have an account? Sign up.
+        Don’t have an account? Sign me up.
       </Text>
     </View>
   );
@@ -62,7 +102,8 @@ function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-center",
+    justifyContent: "flex-start",
+    paddingTop: "10%",
     alignItems: "center",
     width: "100%",
   },

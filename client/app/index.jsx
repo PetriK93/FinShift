@@ -8,15 +8,11 @@ import {
   Alert,
   Switch,
 } from "react-native";
-import { Asset } from "expo-asset";
+import logo from "../assets/images/adaptive-icon.png";
 import { useTheme } from "../context/ThemeContext";
-import UserInput from "../components/inputs/UserInput";
+import UsernameInput from "../components/inputs/UsernameInput";
 import PasswordInput from "../components/inputs/PasswordInput";
 import ThemedButton from "../components/buttons/ThemedButton";
-
-const logoAsset = Asset.fromModule(
-  require("../assets/images/adaptive-icon.png")
-).uri;
 
 function Index() {
   const [username, setUsername] = useState("");
@@ -39,29 +35,12 @@ function Index() {
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
-      {Platform.OS === "web" ? (
-        <img
-          src={logoAsset}
-          alt="App Logo"
-          style={{
-            width: 250,
-            height: 250,
-            borderRadius: 20,
-            marginBottom: 20,
-            objectFit: "cover",
-          }}
-        />
-      ) : (
-        <Image
-          source={require("../assets/images/adaptive-icon.png")}
-          style={styles.logo}
-        />
-      )}
+      <Image source={logo} style={styles.logo} />
       <View>
-        <UserInput
+        <UsernameInput
           value={username}
           onChangeText={setUsername}
-          style={theme}
+          theme={theme}
           accessibilityLabel="Username input"
           selectable={true}
         />
@@ -112,6 +91,7 @@ const styles = StyleSheet.create({
     height: 250,
     marginBottom: 20,
     borderRadius: 20,
+    objectFit: "cover",
   },
   forgotPassword: {
     fontSize: 16,

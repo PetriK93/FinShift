@@ -9,6 +9,7 @@ export default {
     secondary: "#22D3EE",
     accent: "#FACC15",
     border: "#334155",
+    borderFocused: "#4F46E5",
     inputBackground: "#1E293B",
     success: "#10B981",
     error: "#F87171",

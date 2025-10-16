@@ -1,4 +1,4 @@
-# Scheduling Manager App
+# FinnShift
 
 ![Preview](https://github.com/user-attachments/assets/ca8617ad-01d6-4a7b-9c54-0043f7b21284)
 

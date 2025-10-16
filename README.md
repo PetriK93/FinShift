@@ -31,7 +31,7 @@ Install dependencies (example for React Native app):
 
 npm install
 
-- - OR - -
+OR
 
 yarn install
 
@@ -39,7 +39,7 @@ Run the app:
 
 npm start
 
-- - OR - -
+OR
 
 yarn start
 

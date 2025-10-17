@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "expo-router";
 import {
   View,
   StyleSheet,
@@ -19,15 +20,13 @@ function Index() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const theme = useTheme();
+  const router = useRouter();
 
-  const handleSubmit = async () => {
-    if (!username || !password) {
-      if (Platform.OS === "web") {
-        window.alert("Please fill in both fields.");
-      } else {
-        Alert.alert("Error", "Please fill in both fields.", [{ text: "OK" }]);
-      }
-      return;
+  const handleSubmit = () => {
+    if (username && password) {
+      router.push("/dashboard");
+    } else {
+      Alert.alert("Error", "Please fill in both fields.");
     }
   };
 
@@ -54,7 +53,7 @@ function Index() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            gap: "10px",
+            gap: 10,
             marginBottom: "4px",
           }}
         >

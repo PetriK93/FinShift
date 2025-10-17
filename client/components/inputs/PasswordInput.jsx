@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
   },
   visibilityIconWrapper: {
     position: "absolute",
-    right: -40,
+    right: -35,
     top: "50%",
-    transform: [{ translateY: -16 }],
+    transform: [{ translateY: -13 }],
   },
   visibilityIcon: {
-    width: 32,
-    height: 32,
+    width: 26,
+    height: 26,
   },
 });
 

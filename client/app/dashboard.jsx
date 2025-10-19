@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, ScrollView, StyleSheet, Image } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 import { useRouter } from "expo-router";
 import DashboardButton from "../components/buttons/DashboardButton";
@@ -21,8 +21,12 @@ function Dashboard() {
   const theme = useTheme();
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    <ScrollView
+      contentContainerStyle={[
+        styles.container,
+        { backgroundColor: theme.colors.background },
+      ]}
+      keyboardShouldPersistTaps="handled"
     >
       <Image source={logo} style={styles.logo} />
       <View style={styles.buttons}>
@@ -71,7 +75,7 @@ function Dashboard() {
           src={Help}
         ></InfoButton>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
     objectFit: "cover",
   },
   container: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
     paddingTop: "5%",

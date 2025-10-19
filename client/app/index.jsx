@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import { View, StyleSheet, Image, Text, Alert, Switch } from "react-native";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Text,
+  Alert,
+  Switch,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import logo from "../assets/images/adaptive-icon.png";
 import { useTheme } from "../context/ThemeContext";
 import UsernameInput from "../components/inputs/UsernameInput";
@@ -23,55 +33,68 @@ function Index() {
   };
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
     >
-      <Image source={logo} style={styles.logo} />
-      <View style={styles.inputs}>
-        <UsernameInput
-          value={username}
-          onChangeText={setUsername}
-          theme={theme}
-          accessibilityLabel="Username input"
-          selectable={true}
-        />
-        <PasswordInput
-          value={password}
-          onChangeText={setPassword}
-          theme={theme}
-          accessibilityLabel="Password input"
-        />
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 10,
-            marginBottom: "4px",
-          }}
-        >
-          <Switch
-            value={rememberMe}
-            onValueChange={setRememberMe}
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={rememberMe ? "#f5dd4b" : "#f4f3f4"}
+      <ScrollView
+        contentContainerStyle={[
+          styles.container,
+          { backgroundColor: theme.colors.background },
+        ]}
+        keyboardShouldPersistTaps="handled"
+      >
+        <Image source={logo} style={styles.logo} />
+        <View style={styles.inputs}>
+          <UsernameInput
+            value={username}
+            onChangeText={setUsername}
+            theme={theme}
+            accessibilityLabel="Username input"
+            selectable={true}
           />
-          <Text style={{ color: theme.colors.text }}>Remember Me</Text>
+          <PasswordInput
+            value={password}
+            onChangeText={setPassword}
+            theme={theme}
+            accessibilityLabel="Password input"
+          />
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 10,
+              marginBottom: "4px",
+            }}
+          >
+            <Switch
+              value={rememberMe}
+              onValueChange={setRememberMe}
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={rememberMe ? "#f5dd4b" : "#f4f3f4"}
+            />
+            <Text style={{ color: theme.colors.text }}>Remember Me</Text>
+          </View>
         </View>
-      </View>
-      <LogInButton title="Log-In" onPress={handleSubmit} style={theme} />
-      <Text style={[styles.forgotPassword, { color: theme.colors.primary }]}>
-        Forgot your password?
-      </Text>
-      <Text style={[styles.signUpText, { color: theme.colors.primary }]}>
-        Don’t have an account? Sign me up.
-      </Text>
-    </View>
+        <LogInButton title="Log-In" onPress={handleSubmit} style={theme} />
+        <View style={styles.authContainer}>
+          <Text
+            style={[styles.forgotPassword, { color: theme.colors.primary }]}
+          >
+            Forgot your password?
+          </Text>
+          <Text style={[styles.signUpText, { color: theme.colors.primary }]}>
+            Don’t have an account? Sign me up.
+          </Text>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: "flex-start",
     paddingTop: "5%",
     alignItems: "center",
@@ -98,6 +121,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontStyle: "italic",
     cursor: "pointer",
+  },
+  authContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 0,
+    marginTop: 40,
   },
 });
 

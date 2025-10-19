@@ -1,6 +1,6 @@
 # FinShift
 
-![Preview](https://github.com/user-attachments/assets/ca8617ad-01d6-4a7b-9c54-0043f7b21284)
+![Preview](https://github.com/user-attachments/assets/1f7e4fde-3cb7-49e5-95ad-94d9100b8659)
 
 ## 📖 Introduction
 

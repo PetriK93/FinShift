@@ -11,6 +11,7 @@ const UserInput = ({ value, onChangeText, placeholder = "Enter username" }) => {
       <Text style={[styles.label, { color: theme.colors.text }]}>Username</Text>
       <View
         style={{
+          width: "100%",
           borderWidth: 3,
           borderRadius: 6,
           borderColor: isFocused

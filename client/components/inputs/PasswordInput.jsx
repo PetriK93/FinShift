@@ -12,7 +12,7 @@ import { useTheme } from "../../context/ThemeContext";
 const PasswordInput = ({
   value,
   onChangeText,
-  placeholder = "Enter a password",
+  placeholder = "Enter password",
 }) => {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);

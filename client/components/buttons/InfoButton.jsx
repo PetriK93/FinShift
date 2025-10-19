@@ -1,8 +1,7 @@
-import React from "react";
-import { Pressable, Text, StyleSheet, View } from "react-native";
+import { Pressable, Text, StyleSheet, View, Image } from "react-native";
 import { useTheme } from "../../context/ThemeContext";
 
-const ThemedButton = ({ title, onPress, style }) => {
+const InfoButton = ({ title, onPress, style, src }) => {
   const theme = useTheme();
 
   return (
@@ -13,14 +12,8 @@ const ThemedButton = ({ title, onPress, style }) => {
         style,
       ]}
     >
-      <View
-        style={[
-          styles.button,
-          {
-            backgroundColor: theme.colors.primary,
-          },
-        ]}
-      >
+      <View style={styles.button}>
+        <Image source={src} style={styles.icon} />
         <Text style={[styles.text, { color: theme.colors.text }]}>{title}</Text>
       </View>
     </Pressable>
@@ -29,12 +22,14 @@ const ThemedButton = ({ title, onPress, style }) => {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 10,
-    paddingVertical: 12,
-    marginTop: 8,
-    paddingHorizontal: 24,
+    flexDirection: "column",
+    gap: 5,
     justifyContent: "center",
     alignItems: "center",
+  },
+  icon: {
+    width: 34,
+    height: 34,
   },
   text: {
     fontSize: 16,
@@ -42,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThemedButton;
+export default InfoButton;

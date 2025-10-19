@@ -1,19 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Platform,
-  Text,
-  Alert,
-  Switch,
-} from "react-native";
+import { View, StyleSheet, Image, Text, Alert, Switch } from "react-native";
 import logo from "../assets/images/adaptive-icon.png";
 import { useTheme } from "../context/ThemeContext";
 import UsernameInput from "../components/inputs/UsernameInput";
 import PasswordInput from "../components/inputs/PasswordInput";
-import ThemedButton from "../components/buttons/ThemedButton";
+import LogInButton from "../components/buttons/LogInButton";
 
 function Index() {
   const [username, setUsername] = useState("");
@@ -35,7 +27,7 @@ function Index() {
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
       <Image source={logo} style={styles.logo} />
-      <View>
+      <View style={styles.inputs}>
         <UsernameInput
           value={username}
           onChangeText={setUsername}
@@ -66,7 +58,7 @@ function Index() {
           <Text style={{ color: theme.colors.text }}>Remember Me</Text>
         </View>
       </View>
-      <ThemedButton title="Log-In" onPress={handleSubmit} style={theme} />
+      <LogInButton title="Log-In" onPress={handleSubmit} style={theme} />
       <Text style={[styles.forgotPassword, { color: theme.colors.primary }]}>
         Forgot your password?
       </Text>
@@ -81,9 +73,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    paddingTop: "10%",
+    paddingTop: "5%",
     alignItems: "center",
     width: "100%",
+  },
+  inputs: {
+    width: 225,
   },
   logo: {
     width: 250,

@@ -4,7 +4,7 @@
 
 ## 📖 Introduction
 
-Scheduling Manager is a versatile app designed for company managers and employees to efficiently manage work hours. Managers can assign shifts to employees, while workers can request preferred work hours, making scheduling simple, flexible, and transparent.
+FinShift is a versatile app designed for company managers and employees to efficiently manage work hours. Managers can assign shifts to employees, while workers can request preferred work hours, making scheduling simple, flexible, and transparent.
 
 The app features a clean dark/light mode interface with saved preferences, so your theme choice persists between sessions.
 
@@ -24,8 +24,8 @@ The app features a clean dark/light mode interface with saved preferences, so yo
 
 Clone the repository:
 
-git clone https://github.com/username/SchedulingManager.git
-cd SchedulingManager
+git clone https://github.com/PetriK93/FinShift.git
+cd FinShift
 
 Install dependencies (example for React Native app):
 
@@ -57,11 +57,15 @@ Switch between dark and light mode — your choice is saved for next time! 🎉
 
 React Native
 
-Node.js
-
 React Navigation
 
-Custom context for theming
+Expo
+
+Expo-Router
+
+Python
+
+FastAPI
 
 ## 📝 License
 
